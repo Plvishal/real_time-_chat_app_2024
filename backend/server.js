@@ -1,6 +1,7 @@
 import http from 'http';
 import { Server } from 'socket.io';
 import app from './app.js';
+import conn from './config/db.js';
 
 const server = http.createServer(app);
 const io = new Server(server);
@@ -14,5 +15,6 @@ io.on('connection', (socket) => {
 });
 
 server.listen(process.env.PORT, () => {
+  conn();
   console.log(`Server running on the http://localhost:${process.env.PORT}`);
 });
